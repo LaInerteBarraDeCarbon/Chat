@@ -6,21 +6,18 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JTextArea;
 import java.awt.FlowLayout;
-import java.awt.TextArea;
-
 import javax.swing.JTextField;
+import javax.crypto.spec.SecretKeySpec;
 import javax.swing.JButton;
-import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class MiChat extends JFrame {
+public class Principal extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextArea textArea;
+	private JTextField textFieldApeyNom;
+	private Secundaria secundaria;
 
 	/**
 	 * Launch the application.
@@ -29,7 +26,7 @@ public class MiChat extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MiChat frame = new MiChat();
+					Principal frame = new Principal();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,40 +38,35 @@ public class MiChat extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MiChat() {
+	public Principal() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
-		textField = new JTextField();
-		textField.setBounds(40, 196, 264, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
-
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(40, 26, 345, 156);
-		contentPane.add(scrollPane);
-
-		textArea = new JTextArea();
-		textArea.setEditable(false);
-		scrollPane.setViewportView(textArea);
-
 		
-		JButton btnNewButton = new JButton("Enviar");
-		btnNewButton.addActionListener(new ActionListener() {
+		textFieldApeyNom = new JTextField();
+		textFieldApeyNom.setBounds(59, 47, 303, 20);
+		contentPane.add(textFieldApeyNom);
+		textFieldApeyNom.setColumns(10);
+		
+		JButton btnFormulario = new JButton("Formulario");
+		btnFormulario.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent arg0) {
-				textArea.append(textField.getText() + "\n");
-				textField.setText("");
-				
-
+				abseform();
 			}
 		});
-
-		btnNewButton.setBounds(314, 196, 69, 23);
-		contentPane.add(btnNewButton);
-
+		btnFormulario.setBounds(169, 129, 89, 23);
+		contentPane.add(btnFormulario);
+	}
+	public void abseform(){
+		new Secundaria(this);
+		this.setVisible(true);
+	}
+	
+	public  void escribirTextField(String s){
+		textFieldApeyNom.setText(s);
 	}
 }
